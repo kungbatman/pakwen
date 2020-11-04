@@ -58,6 +58,7 @@ public class Crystal {
     public static String type = "1";
 
     public static void main(String[] args) throws Exception {
+//        System.out.println(getBetweenDates2("20200801", "20200827"));
 //        returnLongWord("What if we try a super-long word such as otorhinolaryngology you know");
 //        returnLongWord(" ");
 //        int[] a = {1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 92, 234, 88, 27, 34, 7, 3, 967, 223, 111, 45};
@@ -122,7 +123,16 @@ public class Crystal {
 //        testPerson();
 
 
-        script();
+//        script();
+
+//        System.out.println("loacl==" + getBetweenDays("2020-08-14", "2020-08-10"));
+
+//        LocalDate start_date = LocalDate.parse("2020-09-01");
+//        LocalDate yesterday = start_date.plusDays(-1);
+//        LocalDate tomorrow = start_date.plusDays(1);
+//        System.out.println("yesterday==" +yesterday + "tomorrow==" + tomorrow);
+
+        jsonStr();
     }
 
     public static void a() {
@@ -1165,6 +1175,70 @@ public class Crystal {
                 .ROUND_HALF_UP).toString());
 
 //        System.out.println(k);
+    }
+
+
+    public static List<String> getBetweenDays(String start, String end) {
+        List<String> totalDates = new ArrayList<>();
+        String s = "2019-12-21";
+        String e = "2020-01-10";
+        LocalDate start_date = LocalDate.parse(start);
+        LocalDate end_date = LocalDate.parse(end);
+
+        while (!start_date.isAfter(end_date)) {
+            totalDates.add(start_date.toString().replace("-",""));
+            start_date = start_date.plusDays(1);
+        }
+        return totalDates;
+    }
+
+
+
+    public static List<String> getBetweenDates2(String start, String end) {
+
+        List<String> result = new ArrayList<String>();
+        try {
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            Date start_date = sdf.parse(start);
+            Date end_date = sdf.parse(end);
+
+            Calendar tempStart = Calendar.getInstance();
+            tempStart.setTime(start_date);
+
+            Calendar tempEnd = Calendar.getInstance();
+            tempEnd.setTime(end_date);
+
+            while (tempStart.before(tempEnd) || tempStart.equals(tempEnd)) {
+                result.add(sdf.format(tempStart.getTime()));
+                tempStart.add(Calendar.DAY_OF_YEAR, 1);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Collections.sort(result);
+//        Collections.reverse(result);
+//        System.out.println("list" + result);
+        return result;
+    }
+
+    public static void jsonStr(){
+        Gson gson = new Gson();
+//        List<HeatForecastDaysHttpBean> persons = new ArrayList<HeatForecastDaysHttpBean>();
+//
+//        HeatForecastDaysHttpBean heatForecastDaysHttpBean = new HeatForecastDaysHttpBean();
+//        heatForecastDaysHttpBean.setTime(ymd);
+//        heatForecastDaysHttpBean.setTimeTwo("武清");
+//        heatForecastDaysHttpBean.setType("17");
+//
+//        String str = gson2.toJson(heatForecastDaysHttpBean);
+        HeatForecastDaysHttpBean heatForecastDaysHttpBean = new HeatForecastDaysHttpBean();
+        heatForecastDaysHttpBean.setTime("2020-09-29");
+        heatForecastDaysHttpBean.setTimeTwo("武清");
+        heatForecastDaysHttpBean.setType("17");
+        String str = gson.toJson(heatForecastDaysHttpBean);
+        System.out.println("==: " + str);
     }
 
 }
