@@ -7,6 +7,7 @@ import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.fileTest.Constant.Constant;
 import com.fileTest.Entity.Person;
 import com.fileTest.utils.IdcardUtils;
+import com.fileTest.utils.UploadUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.sun.tools.javac.util.Convert;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -132,7 +134,8 @@ public class Crystal {
 //        LocalDate tomorrow = start_date.plusDays(1);
 //        System.out.println("yesterday==" +yesterday + "tomorrow==" + tomorrow);
 
-        jsonStr();
+//        jsonStr();
+        test4();
     }
 
     public static void a() {
@@ -1186,12 +1189,11 @@ public class Crystal {
         LocalDate end_date = LocalDate.parse(end);
 
         while (!start_date.isAfter(end_date)) {
-            totalDates.add(start_date.toString().replace("-",""));
+            totalDates.add(start_date.toString().replace("-", ""));
             start_date = start_date.plusDays(1);
         }
         return totalDates;
     }
-
 
 
     public static List<String> getBetweenDates2(String start, String end) {
@@ -1223,7 +1225,7 @@ public class Crystal {
         return result;
     }
 
-    public static void jsonStr(){
+    public static void jsonStr() {
         Gson gson = new Gson();
 //        List<HeatForecastDaysHttpBean> persons = new ArrayList<HeatForecastDaysHttpBean>();
 //
@@ -1239,6 +1241,19 @@ public class Crystal {
         heatForecastDaysHttpBean.setType("17");
         String str = gson.toJson(heatForecastDaysHttpBean);
         System.out.println("==: " + str);
+    }
+
+    public static void test4() {
+
+        Date datetime = new Date();
+        File dir = new File("F:/Tencent/Hello");
+        if (!dir.exists()) {
+            // 判断目录是否存在
+            //dir.mkdir();
+            dir.mkdirs();  //多层目录需要调用mkdirs
+            System.out.println("执行了" + datetime);
+        }
+        UploadUtils.readTxtFile("F:\\朱棣世系.txt");
     }
 
 }
