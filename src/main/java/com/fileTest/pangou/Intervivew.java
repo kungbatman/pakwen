@@ -9,12 +9,14 @@ import java.util.Arrays;
  */
 public class Intervivew {
     public static void main(String[] args) {
-        int[] arrays = {3, 5, 1, 29, 467, 2, 12, 43, 19, 73, 8, 382, 334};
-//        int[] narr = arr(arrays);
-        int[] narr = testArr(arrays, 13);
-        for (int i = 0; i < narr.length; i++) {
-            System.out.println(narr[i]);
-        }
+//        int[] arrays = {3, 5, 1, 29, 467, 2, 12, 43, 19, 73, 8, 382, 334};
+////        int[] narr = arr(arrays);
+//        int[] narr = testArr(arrays, 13);
+//        for (int i = 0; i < narr.length; i++) {
+//            System.out.println(narr[i]);
+//        }
+
+        testA();
     }
 
     public static int[] arr(int[] iarr) {
@@ -67,6 +69,13 @@ public class Intervivew {
             }
         }
         return a;
+    }
+
+
+    public static void testA(){
+        String url = "img\\aaa.jpg";
+        String[] paths = url.split("\\.");
+        System.out.println(paths[0]);
     }
 }
 

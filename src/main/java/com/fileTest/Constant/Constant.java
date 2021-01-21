@@ -1,5 +1,7 @@
 package com.fileTest.Constant;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * @author kung
  * @date 2019-10-21 14:24
@@ -14,4 +16,5 @@ public class Constant {
      */
     public static String start_heat = "11-01";
     public static String end_heat = "03-31";
+    public static ConcurrentLinkedQueue<String> fileQueue = new ConcurrentLinkedQueue<>();
 }

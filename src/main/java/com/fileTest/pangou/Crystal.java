@@ -1245,15 +1245,46 @@ public class Crystal {
 
     public static void test4() {
 
-        Date datetime = new Date();
-        File dir = new File("F:/Tencent/Hello");
-        if (!dir.exists()) {
-            // 判断目录是否存在
-            //dir.mkdir();
-            dir.mkdirs();  //多层目录需要调用mkdirs
-            System.out.println("执行了" + datetime);
+//        Date datetime = new Date();
+//        File dir = new File("F:/Tencent/Hello");
+//        if (!dir.exists()) {
+//            // 判断目录是否存在
+//            //dir.mkdir();
+//            dir.mkdirs();  //多层目录需要调用mkdirs
+//            System.out.println("执行了" + datetime);
+//        }
+//        UploadUtils.readTxtFile("F:\\朱棣世系.txt");
+//        String code = "CHT" + String.format("%012d", 3);
+//        System.out.println(code);
+
+        String[] a = {"文物考古资源库", "宋元考古", "不可移动文物数据库", "中国古代墓葬", "中国古代帝陵", "图表资料库", "考古发掘", "探方四壁剖面图"};
+        String[] b = {"文物考古资源库", "宋元考古", "不可移动文物数据库", "中国古代帝陵", "图表资料库", "考古发掘A", "探方四壁剖面图", "建筑剖面图"};
+        getDiffElement(Arrays.asList(a), Arrays.asList(b));
+        String[] c = {"文物考古资源库", "宋元考古", "不可移动文物数据库", "中国古代帝陵", "图表资料库", "考古发掘A", "探方四壁剖面图", "建筑剖面图", ""};
+        System.out.println();
+
+    }
+
+    public static void getDiffElement(List<String> aEle, List<String> bEle) {
+        //sameElement：最后返回的相同的元素
+        Set<String> diffElementIns = new HashSet<>();
+        Set<String> diffElementDel = new HashSet<>();
+        //tempElement：临时存放的元素（aEle or bEle）
+
+
+        //判断bEle中的元素是否存在于tempElement
+        for (String ele : bEle) {
+            if (!aEle.contains(ele) && StringUtils.isNotEmpty(ele)) {
+                diffElementIns.add(ele);
+            }
         }
-        UploadUtils.readTxtFile("F:\\朱棣世系.txt");
+
+        for (String ele : aEle) {
+            if (!bEle.contains(ele) && StringUtils.isNotEmpty(ele)) {
+                diffElementDel.add(ele);
+            }
+        }
+        System.out.println(diffElementIns + "===" + diffElementDel);
     }
 
 }
